@@ -1,5 +1,6 @@
 package photoVisualizer;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JCheckBox;
@@ -11,12 +12,16 @@ public class PhotoVisualizer extends javax.swing.JFrame {
     public PhotoVisualizer() {
         checkBoxList = new ArrayList<>();
         initComponents();
-        checkBoxList.add(rojocb);
-        checkBoxList.add(verdecb);
-        checkBoxList.add(azulcb);
+        checkBoxList.add(redCheckBox);
+        checkBoxList.add(greenCheckBox);
+        checkBoxList.add(blueCheckBox);
         jRadioButton1.setSelected(true);
         setIconPosition(10, 10);
-        //verdecb.setEnabled(false);
+        allCheckBox.setSelected(true);
+        allCheckBox.setEnabled(false);
+        redCheckBox.setSelected(true);
+        greenCheckBox.setSelected(true);
+        blueCheckBox.setSelected(true);
     }
     
     @SuppressWarnings("unchecked")
@@ -24,26 +29,27 @@ public class PhotoVisualizer extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        imagePanel1 = new photoVisualizer.ImagePanel();
+        imagePanel = new photoVisualizer.ImagePanel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
-        todoscb = new javax.swing.JCheckBox();
-        rojocb = new javax.swing.JCheckBox();
-        verdecb = new javax.swing.JCheckBox();
-        azulcb = new javax.swing.JCheckBox();
+        allCheckBox = new javax.swing.JCheckBox();
+        redCheckBox = new javax.swing.JCheckBox();
+        greenCheckBox = new javax.swing.JCheckBox();
+        blueCheckBox = new javax.swing.JCheckBox();
+        urlTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout imagePanel1Layout = new javax.swing.GroupLayout(imagePanel1);
-        imagePanel1.setLayout(imagePanel1Layout);
-        imagePanel1Layout.setHorizontalGroup(
-            imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout imagePanelLayout = new javax.swing.GroupLayout(imagePanel);
+        imagePanel.setLayout(imagePanelLayout);
+        imagePanelLayout.setHorizontalGroup(
+            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 600, Short.MAX_VALUE)
         );
-        imagePanel1Layout.setVerticalGroup(
-            imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        imagePanelLayout.setVerticalGroup(
+            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 357, Short.MAX_VALUE)
         );
 
@@ -79,31 +85,37 @@ public class PhotoVisualizer extends javax.swing.JFrame {
             }
         });
 
-        todoscb.setText("Todos");
-        todoscb.addActionListener(new java.awt.event.ActionListener() {
+        allCheckBox.setText("Todos");
+        allCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                todoscbActionPerformed(evt);
+                allCheckBoxActionPerformed(evt);
             }
         });
 
-        rojocb.setText("Rojo");
-        rojocb.addActionListener(new java.awt.event.ActionListener() {
+        redCheckBox.setText("Rojo");
+        redCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rojocbActionPerformed(evt);
+                redCheckBoxActionPerformed(evt);
             }
         });
 
-        verdecb.setText("Verde");
-        verdecb.addActionListener(new java.awt.event.ActionListener() {
+        greenCheckBox.setText("Verde");
+        greenCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verdecbActionPerformed(evt);
+                greenCheckBoxActionPerformed(evt);
             }
         });
 
-        azulcb.setText("Azul");
-        azulcb.addActionListener(new java.awt.event.ActionListener() {
+        blueCheckBox.setText("Azul");
+        blueCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                azulcbActionPerformed(evt);
+                blueCheckBoxActionPerformed(evt);
+            }
+        });
+
+        urlTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                urlTextFieldActionPerformed(evt);
             }
         });
 
@@ -114,46 +126,54 @@ public class PhotoVisualizer extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jRadioButton1)
                             .addComponent(jRadioButton2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rojocb)
-                            .addComponent(todoscb)))
+                            .addComponent(redCheckBox)
+                            .addComponent(allCheckBox)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jRadioButton3)
                             .addComponent(jRadioButton4))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(azulcb)
-                            .addComponent(verdecb))))
+                            .addComponent(blueCheckBox)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(greenCheckBox)
+                                .addGap(69, 69, 69)
+                                .addComponent(urlTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(imagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(imagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
-                    .addComponent(todoscb))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(rojocb))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton3)
-                    .addComponent(verdecb))
+                    .addComponent(allCheckBox))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButton2)
+                            .addComponent(redCheckBox))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButton3)
+                            .addComponent(greenCheckBox)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(urlTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton4)
-                    .addComponent(azulcb))
+                    .addComponent(blueCheckBox))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -161,67 +181,109 @@ public class PhotoVisualizer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        setIconPosition(imagePanel1.getWidth() - 74, 10);
+        setIconPosition(imagePanel.getWidth() - 74, 10);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        setIconPosition(10, imagePanel1.getHeight() - 74);
+        setIconPosition(10, imagePanel.getHeight() - 74);
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-        setIconPosition(imagePanel1.getWidth() - 74, imagePanel1.getHeight() - 74);
+        setIconPosition(imagePanel.getWidth() - 74, imagePanel.getHeight() - 74);
     }//GEN-LAST:event_jRadioButton4ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         setIconPosition(10, 10);
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
-    private void todoscbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todoscbActionPerformed
-        if(todoscb.isSelected()){
-            activeAll(checkBoxList);
+    private void allCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allCheckBoxActionPerformed
+        if(allCheckBox.isSelected()){
+            activeAllCheckBox(checkBoxList);
+            unlockAllCheckBox(checkBoxList);
+            allCheckBox.setEnabled(false);
         }
-    }//GEN-LAST:event_todoscbActionPerformed
+        imagePanel.invertMode(redCheckBox.isSelected(), greenCheckBox.isSelected(), blueCheckBox.isSelected());
+    }//GEN-LAST:event_allCheckBoxActionPerformed
 
-    private void rojocbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rojocbActionPerformed
-        if(rojocb.isSelected()){
-            enableCheckBox(rojocb,checkBoxList);
-        }else{
-            if(someCheckBoxEnabled(checkBoxList)){
-                disableCheckBox(rojocb,checkBoxList);
-            }else{
-                rojocb.setSelected(true);
-            }
-        }
-    }//GEN-LAST:event_rojocbActionPerformed
+    private void redCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redCheckBoxActionPerformed
+        changeCheckBoxState(redCheckBox, checkBoxList);
+        imagePanel.invertMode(redCheckBox.isSelected(), greenCheckBox.isSelected(), blueCheckBox.isSelected());
+    }//GEN-LAST:event_redCheckBoxActionPerformed
 
-    private void verdecbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verdecbActionPerformed
-        if(verdecb.isSelected()){
-            enableCheckBox(verdecb,checkBoxList);
-        }else{
-            if(someCheckBoxEnabled(checkBoxList)){
-                disableCheckBox(rojocb,checkBoxList);
-            }else{
-                verdecb.setSelected(true);
-            }
-        }
-    }//GEN-LAST:event_verdecbActionPerformed
+    private void greenCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_greenCheckBoxActionPerformed
+        changeCheckBoxState(greenCheckBox, checkBoxList);
+        imagePanel.invertMode(redCheckBox.isSelected(), greenCheckBox.isSelected(), blueCheckBox.isSelected());
+    }//GEN-LAST:event_greenCheckBoxActionPerformed
 
-    private void azulcbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_azulcbActionPerformed
-        if(azulcb.isSelected()){
-            enableCheckBox(azulcb,checkBoxList);
+    private void blueCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blueCheckBoxActionPerformed
+        changeCheckBoxState(blueCheckBox, checkBoxList);
+        imagePanel.invertMode(redCheckBox.isSelected(), greenCheckBox.isSelected(), blueCheckBox.isSelected());
+    }//GEN-LAST:event_blueCheckBoxActionPerformed
+
+    private void urlTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_urlTextFieldActionPerformed
+        if(imagePanel.setImage(urlTextField.getText())){
+            repaint();
         }else{
-            if(someCheckBoxEnabled(checkBoxList)){
-                disableCheckBox(rojocb,checkBoxList);
-            }else{
-                azulcb.setSelected(true);
-            }
+            urlTextField.setForeground(Color.red);
         }
-    }//GEN-LAST:event_azulcbActionPerformed
+    }//GEN-LAST:event_urlTextFieldActionPerformed
 
     private void setIconPosition(int posX, int posY){
-        imagePanel1.setIconX(posX);
-        imagePanel1.setIconY(posY);
+        imagePanel.setIconX(posX);
+        imagePanel.setIconY(posY);
         repaint();
+    }
+    
+    private void changeCheckBoxState(JCheckBox checkBox, List<JCheckBox> checkBoxList) {
+        if(checkBox.isSelected()){
+            unlockAllCheckBox(checkBoxList);
+            if(isAllEnabled(checkBoxList)){
+                allCheckBox.setSelected(true);
+                allCheckBox.setEnabled(false);
+            }
+        }else{
+            allCheckBox.setSelected(false);
+            allCheckBox.setEnabled(true);
+            JCheckBox jcb = lockCheckBox(checkBoxList);
+            if(jcb != null){
+                jcb.setEnabled(false);
+            }
+        }
+    }
+    
+    private void activeAllCheckBox(List<JCheckBox> checkBoxList) {
+        for (JCheckBox jCheckBox : checkBoxList) {
+            jCheckBox.setSelected(true);
+        }
+    }
+
+    private boolean isAllEnabled(List<JCheckBox> checkBoxList) {
+        for (JCheckBox jCheckBox : checkBoxList) {
+            if(!jCheckBox.isSelected()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private JCheckBox lockCheckBox(List<JCheckBox> checkBoxList) {
+        JCheckBox toBlock = null;
+        for (JCheckBox jCheckBox : checkBoxList) {
+            if(jCheckBox.isSelected()){
+                if(toBlock == null){
+                    toBlock = jCheckBox;
+                }else{
+                    return null;
+                }
+            }
+        }
+        return toBlock;
+    }
+
+    private void unlockAllCheckBox(List<JCheckBox> checkBoxList) {
+        for (JCheckBox jCheckBox : checkBoxList) {
+            jCheckBox.setEnabled(true);
+        }
     }
     
     public static void main(String args[]) {
@@ -248,50 +310,16 @@ public class PhotoVisualizer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox azulcb;
+    private javax.swing.JCheckBox allCheckBox;
+    private javax.swing.JCheckBox blueCheckBox;
     private javax.swing.ButtonGroup buttonGroup1;
-    private photoVisualizer.ImagePanel imagePanel1;
+    private javax.swing.JCheckBox greenCheckBox;
+    private photoVisualizer.ImagePanel imagePanel;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JCheckBox rojocb;
-    private javax.swing.JCheckBox todoscb;
-    private javax.swing.JCheckBox verdecb;
+    private javax.swing.JCheckBox redCheckBox;
+    private javax.swing.JTextField urlTextField;
     // End of variables declaration//GEN-END:variables
-
-    private void disableCheckBox(JCheckBox checkBox, List<JCheckBox> checkBoxList) {
-        for (JCheckBox jCheckBox : checkBoxList) {
-            if(jCheckBox != checkBox && jCheckBox.isSelected()){
-                checkBox.setSelected(false);
-                todoscb.setSelected(false);
-                break;
-            }
-        }
-    }
-
-    private void enableCheckBox(JCheckBox checkBox, List<JCheckBox> checkBoxList) {
-        for (JCheckBox jCheckBox : checkBoxList) {
-            if(!jCheckBox.isSelected()){
-                todoscb.setSelected(false);
-                break;
-            }
-            todoscb.setSelected(true);
-        }
-    }
-
-    private void activeAll(List<JCheckBox> checkBoxList) {
-        for (JCheckBox jCheckBox : checkBoxList) {
-            jCheckBox.setSelected(true);
-        }
-    }
-
-    private boolean someCheckBoxEnabled(List<JCheckBox> checkBoxList) {
-        for (JCheckBox jCheckBox : checkBoxList) {
-            if(jCheckBox.isSelected()){
-                return true;
-            }
-        }
-        return false;
-    }
 }

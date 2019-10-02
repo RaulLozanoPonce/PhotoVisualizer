@@ -17,12 +17,18 @@ public class ImagePanel extends JPanel{
     
     public ImagePanel(){
         initComponents();
+        setImage("https://www.dictando.com/wp-content/uploads/2018/07/dictado-mi-casa-A1.jpg");
+    }
+    
+    public boolean setImage(String url){
         try{
-            img = ImageIO.read(new URL("https://www.dictando.com/wp-content/uploads/2018/07/dictado-mi-casa-A1.jpg"));
+            img = ImageIO.read(new URL(url));
             icon = ImageIO.read(new URL("https://png.pngtree.com/element_our/sm/20180626/sm_5b321ca7a1ca4.png"));            
             imgCopy = deepCopy(img);
+            return true;
         } catch (IOException e){
             System.out.print(e);
+            return false;
         }
     }
 
@@ -51,7 +57,7 @@ public class ImagePanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.drawImage(imgCopy, 0, 0, this);
+        g.drawImage(imgCopy, 0, 0, getWidth(), getHeight(), this);
         g.drawImage(icon,iconX,iconY,64,64,this);
     }
     
