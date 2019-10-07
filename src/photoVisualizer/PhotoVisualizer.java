@@ -11,17 +11,22 @@ public class PhotoVisualizer extends javax.swing.JFrame {
     
     public PhotoVisualizer() {
         checkBoxList = new ArrayList<>();
+        
         initComponents();
+        
         checkBoxList.add(redCheckBox);
         checkBoxList.add(greenCheckBox);
         checkBoxList.add(blueCheckBox);
+        
         topLeftRadioButton.setSelected(true);
         setIconPosition(10, 10);
+        
         allCheckBox.setSelected(true);
         allCheckBox.setEnabled(false);
         redCheckBox.setSelected(true);
         greenCheckBox.setSelected(true);
         blueCheckBox.setSelected(true);
+        
         urlTextField.setText("https://www.dictando.com/wp-content/uploads/2018/07/dictado-mi-casa-A1.jpg");
     }
     
@@ -45,7 +50,7 @@ public class PhotoVisualizer extends javax.swing.JFrame {
         imageSelectionPanel = new javax.swing.JPanel();
         urlTextField = new javax.swing.JTextField();
         urlLabel = new javax.swing.JLabel();
-        loadLabelButton = new javax.swing.JButton();
+        LoadURLButton = new javax.swing.JButton();
         cleanURLButton = new javax.swing.JButton();
         authorsLabel = new javax.swing.JLabel();
 
@@ -195,10 +200,10 @@ public class PhotoVisualizer extends javax.swing.JFrame {
         urlLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         urlLabel.setText("URL:");
 
-        loadLabelButton.setText("Cargar Imagen");
-        loadLabelButton.addActionListener(new java.awt.event.ActionListener() {
+        LoadURLButton.setText("Cargar Imagen");
+        LoadURLButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadLabelButtonActionPerformed(evt);
+                LoadURLButtonActionPerformed(evt);
             }
         });
 
@@ -220,7 +225,7 @@ public class PhotoVisualizer extends javax.swing.JFrame {
                 .addGroup(imageSelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(urlTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(imageSelectionPanelLayout.createSequentialGroup()
-                        .addComponent(loadLabelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(LoadURLButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cleanURLButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -234,7 +239,7 @@ public class PhotoVisualizer extends javax.swing.JFrame {
                     .addComponent(urlLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(imageSelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(loadLabelButton)
+                    .addComponent(LoadURLButton)
                     .addComponent(cleanURLButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -331,9 +336,9 @@ public class PhotoVisualizer extends javax.swing.JFrame {
         urlTextField.setText("");
     }//GEN-LAST:event_cleanURLButtonActionPerformed
 
-    private void loadLabelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadLabelButtonActionPerformed
+    private void LoadURLButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadURLButtonActionPerformed
         loadImage();
-    }//GEN-LAST:event_loadLabelButtonActionPerformed
+    }//GEN-LAST:event_LoadURLButtonActionPerformed
 
     private void setIconPosition(int posX, int posY){
         imagePanel.setIconX(posX);
@@ -426,6 +431,7 @@ public class PhotoVisualizer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton LoadURLButton;
     private javax.swing.JCheckBox allCheckBox;
     private javax.swing.JLabel authorsLabel;
     private javax.swing.JCheckBox blueCheckBox;
@@ -437,7 +443,6 @@ public class PhotoVisualizer extends javax.swing.JFrame {
     private javax.swing.JCheckBox greenCheckBox;
     private photoVisualizer.ImagePanel imagePanel;
     private javax.swing.JPanel imageSelectionPanel;
-    private javax.swing.JButton loadLabelButton;
     private javax.swing.JPanel logoPosition;
     private javax.swing.JCheckBox redCheckBox;
     private javax.swing.JLabel titleLabel;
